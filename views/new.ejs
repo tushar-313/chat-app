@@ -4,14 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Write Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h2> Write new chat...</h2>
-    <form method="post" action="/chats">
-    <input placeholder="who are you?" name="from"><br><br>
-    <textarea name="msg" placeholder="Write your message here.."></textarea><br><br>
-   <input placeholder="add receiver" name="to"><br><br>
-   <button>create chat</button>
-</form>
+    <div class="page">
+        <header class="header">
+            <div>
+                <p class="eyebrow">New Chat</p>
+                <h2>Write a new message</h2>
+                <p class="subtle">Send a quick note to someone.</p>
+            </div>
+            <a class="btn btn-ghost" href="/chats">Back</a>
+        </header>
+
+        <form class="card" method="post" action="/chats">
+            <label class="field">
+                <span>From</span>
+                <input placeholder="Who are you?" name="from" required>
+            </label>
+
+            <label class="field">
+                <span>Message</span>
+                <textarea name="msg" rows="6" placeholder="Write your message here..." required></textarea>
+            </label>
+
+            <label class="field">
+                <span>To</span>
+                <input placeholder="Add receiver" name="to" required>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Create Chat</button>
+        </form>
+    </div>
 </body>
 </html>

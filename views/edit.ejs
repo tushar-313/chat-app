@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Route</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h3>Edit your chat <%=chat._id %></h3>
-    <p>This chat was sent from<i> <%=chat.from%></i> to <i><%=chat.to%></i></p>
-    <form method="post" action="/chats/<%=chat._id%>?_method=put">
-        <textarea name="msg" rows="10" cols="50"><%= chat.msg%></textarea>
-        <br><br>
-        <button>Save</button>
-    </form>
+    <div class="page">
+        <header class="header">
+            <div>
+                <p class="eyebrow">Edit Chat</p>
+                <h2>Edit message</h2>
+                <p class="subtle">This chat was sent from <strong><%= chat.from %></strong> to <strong><%= chat.to %></strong>.</p>
+            </div>
+            <a class="btn btn-ghost" href="/chats">Back</a>
+        </header>
+
+        <form class="card" method="post" action="/chats/<%=chat._id%>?_method=put">
+            <label class="field">
+                <span>Message</span>
+                <textarea name="msg" rows="8" required><%= chat.msg %></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+    </div>
            
 </body>
 </html>

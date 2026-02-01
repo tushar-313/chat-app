@@ -4,34 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini WhatsApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h2>ALL CHATS</h2>
-    <form method="GET" action="/chats/new">
-        <button>New Chat</button>
-    </form>
-    <br>
-    <% for(let chat of chats){ %>
-    <div class="chat">
-        <p>From : <i><%= chat.from %></i></p>
-        <div class="msg"><p>Message : <%= chat.msg %></p>
-            <form action="/chats/<%=chat._id%>/edit" method="get">
-        <button>Edit Message</button>
-        </form>
-        <br>
-         <form action="/chats/<%=chat._id%>?_method=DELETE" method="POST">
-        <button>Delete</button>
-        </form>
-        </div>
-    
-        <p>Received by :<i> <%= chat.to %></i></p>
-        <p><%= chat.created_at.toString().split(" ")[4]%> </p>
-        <p><%= chat.created_at.toString().split(" ").slice(0,4).join(" "
-        )%> </p>
+    <div class="page">
+        <header class="header">
+            <div>
+                <p class="eyebrow">Quick Talk</p>
+                <h2>All Chats</h2>
+                <p class="subtle">Manage messages, edit or remove chats anytime.</p>
+            </div>
+            <form method="GET" action="/chats/new">
+                <button class="btn btn-primary" type="submit">New Chat</button>
+            </form>
+        </header>
+
+        <section class="chat-list">
+            <% for(let chat of chats){ %>
+            <article class="chat-card">
+                <div class="chat-head">
+                    <div class="person">
+                        <div class="avatar">
+                            <span class="initials"><%= chat.from ? chat.from[0].toUpperCase() : "?" %></span>
+                        </div>
+                        <div>
+                            <p class="label">From</p>
+                            <p class="name"><%= chat.from %></p>
+                        </div>
+                    </div>
+                    <div class="person">
+                        <div class="avatar avatar-secondary">
+                            <span class="initials"><%= chat.to ? chat.to[0].toUpperCase() : "?" %></span>
+                        </div>
+                        <div>
+                            <p class="label">To</p>
+                            <p class="name"><%= chat.to %></p>
+                        </div>
+                    </div>
+                    <div class="time-pill">
+                        <span><%= chat.created_at.toString().split(" ")[4] %></span>
+                        <span>•</span>
+                        <span><%= chat.created_at.toString().split(" ").slice(0,4).join(" ") %></span>
+                    </div>
+                </div>
+
+                <div class="conversation">
+                    <div class="bubble">
+                        <p><%= chat.msg %></p>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <form action="/chats/<%=chat._id%>/edit" method="get">
+                        <button class="btn btn-secondary" type="submit">Edit</button>
+                    </form>
+                    <form action="/chats/<%=chat._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </div>
+            </article>
+            <% } %>
+        </section>
     </div>
-    <br><br>
-<%} %> 
 </body>
 </html>
 
