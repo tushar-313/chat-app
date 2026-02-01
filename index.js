@@ -18,7 +18,7 @@ main()
 .catch((err)=>{ console.log(err)});
 
 async function main() {
-    const dbUrl = process.env.ATLAS_URL || 'mongodb://127.0.0.1:27017/whatsapp';
+    const dbUrl = process.env.ATLAS_URL || 'mongodb://127.0.0.1:27017/quicktalk';
     await mongoose.connect(dbUrl);
 }
 //index route to display all chats
