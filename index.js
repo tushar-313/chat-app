@@ -71,7 +71,7 @@ console.log("Deleted chat:", del);
 });
 //root route
 app.get('/',(req,res)=>{
-    res.send("Root is working");
+    res.redirect('/chats');
 });
 
 app.listen(port,()=>{
