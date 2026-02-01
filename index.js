@@ -1,6 +1,6 @@
 const express=require('express');
 const app= express();
-const port=8080;
+const port = process.env.PORT || 8080;
 const mongoose=require('mongoose');
 const Chat=require('./models/chats.js');
 const path=require('path');
@@ -17,8 +17,9 @@ main()
 .then(()=>{ console.log("connection is successful")})
 .catch((err)=>{ console.log(err)});
 
-async function main(){
- await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp');
+async function main() {
+    const dbUrl = process.env.ATLAS_URL || 'mongodb://127.0.0.1:27017/whatsapp';
+    await mongoose.connect(dbUrl);
 }
 //index route to display all chats
 app.get('/chats',async (req,res)=>{
